@@ -25,4 +25,10 @@
 
 .settings-container {
   float: left;
+  width: 200px;
+}
+
+.game-container {
+  margin-top: 20px;
+  padding-left: 200px;
 }
