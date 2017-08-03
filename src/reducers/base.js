@@ -1,4 +1,4 @@
-import { BoardModel } from '../model/BoardModel';
+import { BoardUtil } from '../model/BoardUtil';
 import { SquareModel } from '../model/SquareModel';
 
 const initialState = {
@@ -6,15 +6,16 @@ const initialState = {
         size: 5,
         numMines: 5
     },
-    board: new BoardModel(5, 5)
+    squares: BoardUtil.makeNewBoard(5,5)
 }
 
 export function reduce(state = initialState, action) {
-    console.log(action.type);
     switch(action.type) {
         case "CLICK_SQUARE":
-            state.board.changeSquareValue(action.row, action.col);
-            return Object.assign({}, state);
+            var newSquares = BoardUtil.changeSquareValue(state.squares, action.row, action.col);
+            return Object.assign({}, state, {
+                squares: newSquares
+            });
         case "CHANGE_BOARD_SIZE":
             return Object.assign({}, state, {
                 settings: {
@@ -30,9 +31,9 @@ export function reduce(state = initialState, action) {
                 }
             })
         case "UPDATE_BOARD":
-           var board = new BoardModel(state.settings.size, state.settings.numMines);
+           var newSquares = BoardUtil.makeNewBoard(state.settings.size, state.settings.numMines);
            return Object.assign({}, state, {
-               board: board
+               squares: newSquares
            })
         default:
             return state

@@ -32,7 +32,7 @@ class GameComponent extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    squares: state.board.squares
+    squares: state.squares
   }
 }
 
