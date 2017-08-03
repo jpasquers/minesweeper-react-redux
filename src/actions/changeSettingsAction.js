@@ -12,8 +12,8 @@ export const changeNumMines = (newNumMines) => {
     }
 }
 
-export const updateBoard = () => {
+export const resetBoard = () => {
     return {
-        type: "UPDATE_BOARD"
+        type: "RESET_BOARD"
     }
 }

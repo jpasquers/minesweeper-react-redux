@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { changeSize, changeNumMines, updateBoard } from '../actions/changeSettingsAction';
+import { changeSize, changeNumMines, resetBoard } from '../actions/changeSettingsAction';
 import {connect} from 'react-redux';
 
 class SettingsComponent extends Component {
@@ -15,7 +15,7 @@ class SettingsComponent extends Component {
 
           <input type="text" value={this.props.numMines} onChange={this.props.handleNumMinesChange}/>
 
-          <button onClick={this.props.updateBoard}>Update (and reset) Board</button>
+          <button onClick={this.props.resetBoard}>Update (and reset) Board</button>
         </div>
     );
   }
@@ -36,8 +36,8 @@ const mapDispatchToProps = (dispatch) => {
     handleNumMinesChange: (event) => {
       dispatch(changeNumMines(event.target.value));
     },
-    updateBoard: () => {
-      dispatch(updateBoard());
+    resetBoard: () => {
+      dispatch(resetBoard());
     }
   }
 }

@@ -6,3 +6,11 @@ export const clickSquare = (sqr) => {
         col: sqr.col
     }
 }
+
+export const flagSquare = (sqr) => {
+    return {
+        type: "FLAG_SQUARE",
+        row: sqr.row,
+        col: sqr.col
+    }
+}

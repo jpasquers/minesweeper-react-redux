@@ -1,16 +1,44 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Square} from './Square';
-import {clickSquare} from '../actions/clickSquareAction';
+import {clickSquare, flagSquare} from '../actions/clickSquareAction';
+import { GameStatuses } from '../constants/GameStatuses';
+import { resetBoard } from '../actions/changeSettingsAction';
+
 
 class GameComponent extends Component {
 
   render() {
     return (
       <div>
+        {this.renderStatus()}
         {this.renderSquareRows()}
       </div>
     );
+  }
+
+  renderStatus() {
+    if (this.props.status == GameStatuses.DEFEAT) {
+      return (
+        <div>
+          You lost! click here to play again
+          <button onClick={this.props.restartGame}> Play again </button>
+        </div>
+      )
+    }
+    else if (this.props.status == GameStatuses.VICTORY) {
+      return (
+        <div>
+          Congrats, you won! click here to play again
+          <button onClick={this.props.restartGame}> Play again </button>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div> Ur in game right now </div>
+      )
+    }
   }
 
   renderSquareRows() {
@@ -25,21 +53,32 @@ class GameComponent extends Component {
 
   renderSquaresInRow(squareRow) {
     return squareRow.map((sqr, j) => {
-      return <Square key={j} square={sqr} clickSquare={() => this.props.registerClick(sqr)}/>
+      return <Square 
+        key={j} 
+        square={sqr} 
+        leftClickSquare={() => this.props.registerLeftClick(sqr)}
+        rightClickSquare={(e) => {e.preventDefault(); this.props.registerRightClick(sqr); }}/>
     })
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    squares: state.squares
+    squares: state.squares,
+    status: state.gameStatus
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerClick: (sqr) => {
+    registerLeftClick: (sqr) => {
       dispatch(clickSquare(sqr));
+    },
+    restartGame: () => {
+      dispatch(resetBoard());
+    },
+    registerRightClick: (sqr) => {
+      dispatch(flagSquare(sqr));
     }
   }
 }

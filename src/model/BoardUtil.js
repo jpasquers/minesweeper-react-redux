@@ -90,4 +90,24 @@ export class BoardUtil {
         }
         return newSquares;
     }
+
+    static gameWon(squares) {
+        var gameWon = true;
+        for (var i=0; i< squares.length; i++) {
+            for (var j=0; j<squares[i].length; j++) {
+                var square = squares[i][j];
+                if ((square.isMine && !square.isFlagged) || (!square.isMine && !square.isClicked)) {
+                    gameWon = false;
+                }
+            }
+        }
+
+        return gameWon;
+    }
+
+    static flagSquare(squares, row, col) {
+        var newSquares = squares.slice();
+        newSquares[row][col].isFlagged = !newSquares[row][col].isFlagged;
+        return newSquares;
+    }
 }
