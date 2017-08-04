@@ -2,23 +2,30 @@ import React, { Component } from 'react';
 import './Square.css';
 export class Square extends Component {
 
-  mineLogo(square) {
+  squareLogo(square) {
     if (square.isClicked) {
-        return <span>{square.surroundingMines}</span>
+        return <span className={"numMines-" + square.surroundingMines}>{square.surroundingMines}</span>
     }
     else if (square.isFlagged) {
-      return <span>F</span>
+      return <span className="glyphicon glyphicon-flag "></span>
     }
     else {
-      return <span></span>
+      return <span className=""></span>
     }
   }
 
 
   render() {
+    var clickedClass = "";
+    if (this.props.square.isClicked) {
+      clickedClass = "clicked";
+    }
+    else {
+      clickedClass = "unclicked";
+    }
     return (
-        <button className="square-btn" onClick={this.props.leftClickSquare} onContextMenu={this.props.rightClickSquare}>
-            {this.mineLogo(this.props.square)}
+        <button className={"square-btn " + clickedClass} onClick={this.props.leftClickSquare} onContextMenu={this.props.rightClickSquare}>
+            {this.squareLogo(this.props.square)}
         </button>
     );
   }

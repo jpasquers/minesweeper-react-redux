@@ -4,4 +4,58 @@
     background: white;
     text-align: center;
     vertical-align: top;
+    border-top: 2px solid rgb(230,230,230);
+    border-left: 2px solid rgb(230,230,230);
+    border-bottom: 2px solid rgb(140,140,140);
+    border-right: 2px solid rgb(140,140,140);
+}
+
+.clicked {
+    background: rgb(180,180,180);
+    border: 1px solid rgb(140,140,140);
+}
+
+.clicked:focus, .unclicked:focus {
+    outline: none;
+}
+
+.glyphicon-flag {
+    color: rgb(128, 0, 0);
+}
+
+.unclicked {
+    background: rgb(210,210,210);
+}
+
+.numMines-1 {
+    color: blue;
+}
+
+.numMines-2 {
+    color: green;
+}
+
+.numMines-3 {
+    color: red;
+}
+
+.numMines-4 {
+    color: rgb(102, 255, 51);
+   
+}
+
+.numMines-5 {
+    color: rgb(255, 0, 0);
+}
+
+.numMines-6 {
+    color: rgb(128, 0, 0);
+}
+
+.numMines-7 {
+    color: rgb(0, 51, 153);
+}
+
+.numMines-8 {
+    color: rgb(51, 51, 0);
 }

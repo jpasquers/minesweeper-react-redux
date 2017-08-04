@@ -44,7 +44,7 @@ class GameComponent extends Component {
   renderSquareRows() {
     return this.props.squares.map((squareRow, i) => {
       return (
-        <div key={i}>
+        <div className="rowContainer" key={i}>
           {this.renderSquaresInRow(squareRow)}
         </div>
       )

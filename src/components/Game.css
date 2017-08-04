@@ -1,0 +1,5 @@
+.rowContainer::after {
+    display: table;
+    clear: both;
+    content: "";
+}
