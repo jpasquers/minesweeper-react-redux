@@ -20,7 +20,7 @@ export function reduce(state = initialState, action) {
                 })
             }
             else {
-                var newSquares = BoardUtil.changeSquareValue(state.squares, action.row, action.col);
+                var newSquares = BoardUtil.clickSquare(state.squares, action.row, action.col);
                 if (BoardUtil.gameWon(newSquares)) {
                     return Object.assign({}, state, {
                         gameStatus: GameStatuses.VICTORY,

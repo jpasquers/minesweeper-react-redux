@@ -10,6 +10,7 @@ export class BoardUtil {
     }
 
     static initSquares(size) {
+        if (size < 0) return [];
         var squares = new Array(size);
         for (var i=0; i< size; i++) {
             squares[i] = new Array(size);
@@ -20,8 +21,7 @@ export class BoardUtil {
         return squares;
     }
 
-    static addMines(squares, numMines) {
-        console.log(squares);
+    static getAllBoardPositions(squares) {
         let positions = new Set();
         squares.map((row, i) => {
             row.map((col, j) => {
@@ -30,6 +30,12 @@ export class BoardUtil {
             })
             return row;
         })
+
+        return positions;
+    }
+
+    static addMines(squares, numMines) {
+        let positions = BoardUtil.getAllBoardPositions(squares);
 
         for (var i=numMines; i>0; i--) {
             var randNum = Math.floor(Math.random() * positions.size);
@@ -82,10 +88,11 @@ export class BoardUtil {
         }, row, col, squares.length)
     }
 
-    static changeSquareValue(squares,row, col) {
+    static clickSquare(squares,row, col) {
+        if (squares[row][col].isFlagged) return;
         var newSquares = squares.slice();
         newSquares[row][col].isClicked = true;
-        if (newSquares[row][col].surroundingMines === 0 && !newSquares[row][col].isMine) {
+        if (newSquares[row][col].surroundingMines === 0) {
             BoardUtil.recursivelyRevealEmptySpots(newSquares, row, col)
         }
         return newSquares;
@@ -107,7 +114,9 @@ export class BoardUtil {
 
     static flagSquare(squares, row, col) {
         var newSquares = squares.slice();
-        newSquares[row][col].isFlagged = !newSquares[row][col].isFlagged;
+        if (!newSquares[row][col].isClicked) {
+            newSquares[row][col].isFlagged = !newSquares[row][col].isFlagged;
+        }
         return newSquares;
     }
 }
