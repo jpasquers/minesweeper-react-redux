@@ -1,5 +1,9 @@
-.rowContainer::after {
-    display: table;
-    clear: both;
-    content: "";
+
+.statusTitle {
+
+}
+
+.playAgain {
+    text-align: center;
+    margin-bottom: 10px;
 }

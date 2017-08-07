@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { changeSize, changeNumMines, resetBoard } from '../actions/changeSettingsAction';
 import {connect} from 'react-redux';
+import './Settings.css';
 
 class SettingsComponent extends Component {
   render() {
@@ -19,9 +20,9 @@ class SettingsComponent extends Component {
               </td>
             </tr>
             <tr>
-              <td>Number Of Mines</td>
+              <td>Number Of Mines:</td>
               <td>
-                <input type="text" value={this.props.numMines} onChange={this.props.handleNumMinesChange}/>
+                <input className="form-control" type="text" value={this.props.numMines} onChange={this.props.handleNumMinesChange}/>
               </td>
             </tr>
           </table>

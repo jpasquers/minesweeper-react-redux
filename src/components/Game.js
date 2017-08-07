@@ -4,7 +4,7 @@ import {Square} from './Square';
 import {clickSquare, flagSquare} from '../actions/clickSquareAction';
 import { GameStatuses } from '../constants/GameStatuses';
 import { resetBoard } from '../actions/changeSettingsAction';
-
+import './Game.css'
 
 class GameComponent extends Component {
 
@@ -20,23 +20,30 @@ class GameComponent extends Component {
   renderStatus() {
     if (this.props.status == GameStatuses.DEFEAT) {
       return (
+
         <div>
-          You lost! click here to play again
-          <button onClick={this.props.restartGame}> Play again </button>
+          <h4 className="statusTitle">
+            You lost! click here to play again
+            
+          </h4>
+          <button className="playAgain" onClick={this.props.restartGame}> Play again </button>
         </div>
       )
     }
     else if (this.props.status == GameStatuses.VICTORY) {
       return (
         <div>
-          Congrats, you won! click here to play again
-          <button onClick={this.props.restartGame}> Play again </button>
+          <h4 className="statusTitle">
+            Congrats, you won! click here to play again
+            
+          </h4>
+          <button className="playAgain" onClick={this.props.restartGame}> Play again </button>
         </div>
       )
     }
     else {
       return (
-        <div> Ur in game right now </div>
+        <h4 className="statusTitle"> Game in progress: </h4>
       )
     }
   }

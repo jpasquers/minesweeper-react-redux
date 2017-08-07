@@ -1,0 +1,16 @@
+.settings-container {
+    float: left;
+    width: 400px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.settings-container table{
+    border-spacing: 10px;
+    border-collapse: separate;
+    text-align: left;
+}
+
+.settings-container button{
+    margin-left: 10px;
+}

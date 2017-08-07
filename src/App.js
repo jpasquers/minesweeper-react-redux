@@ -14,7 +14,7 @@ class App extends Component {
           <h2>Minesweeper</h2>
         </div>
         <div className="container-fluid">
-          <div className="settings-container">
+          <div>
             <Settings/>
           </div>
           <div className="game-container">
